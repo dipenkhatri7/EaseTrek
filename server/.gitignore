@@ -288,7 +288,3 @@ Session.vim
 .netrwhist
 # auto-generated tag files
 tags
-/vscode
-./vscode
-vscode
-.vscode
