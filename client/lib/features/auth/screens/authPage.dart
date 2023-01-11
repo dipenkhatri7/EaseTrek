@@ -23,7 +23,7 @@ class AuthPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage('images/logo.png'),
                     height: 48.45,
                     width: 48.45,
@@ -73,10 +73,7 @@ class AuthPage extends StatelessWidget {
                           decoration: TextDecoration.none),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => SignIn()));
+                      Navigator.pushNamed(context, SignIn.routeName);
                     },
                   ),
                 ),
@@ -107,15 +104,12 @@ class AuthPage extends StatelessWidget {
                           decoration: TextDecoration.none),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => SignUp()));
+                      Navigator.pushNamed(context, SignUp.routeName);
                     },
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:client/common/widgets/textFields.dart';
 import 'package:client/constant/constants.dart';
+import 'package:client/constant/utils.dart';
+import 'package:client/features/auth/services/authService.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -15,6 +17,9 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordConfirmController =
+      TextEditingController();
+  final AuthService authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +73,7 @@ class _SignUpState extends State<SignUp> {
                   clipBehavior: Clip.none,
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.282,
+                      height: MediaQuery.of(context).size.height * 0.342,
                       width: MediaQuery.of(context).size.width * 0.8,
                       child: Column(children: [
                         SizedBox(
@@ -111,6 +116,15 @@ class _SignUpState extends State<SignUp> {
                           labelText: "Password",
                           hideStatus: true,
                         ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02,
+                        ),
+                        TextFields(
+                          controller: _passwordConfirmController,
+                          hintText: 'Confirm your password',
+                          labelText: "Confirm Password",
+                          hideStatus: true,
+                        ),
                       ]),
                     ),
                   ],
@@ -142,7 +156,17 @@ class _SignUpState extends State<SignUp> {
                           letterSpacing: 1.85,
                           decoration: TextDecoration.none),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (_signInFormKey.currentState!.validate()) {
+                        await authService.signUpUser(
+                            name: _nameController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                            confirmPassword: _passwordConfirmController.text,
+                            context: context);
+                        showSnackBar(context, 'Account created successfully');
+                      }
+                    },
                   ),
                 ),
               ),

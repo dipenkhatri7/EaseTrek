@@ -1,5 +1,6 @@
 import 'package:client/common/widgets/textFields.dart';
 import 'package:client/constant/constants.dart';
+import 'package:client/features/auth/services/authService.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -14,12 +15,12 @@ class _SignInState extends State<SignIn> {
   final _signInFormKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService authService = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFFF2F2F2),
-
+      backgroundColor: const Color(0xFFF2F2F2),
       body: SafeArea(
         // decoration: const BoxDecoration(
         //   image: DecorationImage(image: AssetImage(''), fit: BoxFit.contain),
@@ -32,7 +33,7 @@ class _SignInState extends State<SignIn> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage('images/logo.png'),
                     height: 48.45,
                     width: 48.45,
@@ -133,7 +134,12 @@ class _SignInState extends State<SignIn> {
                           letterSpacing: 1.85,
                           decoration: TextDecoration.none),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      await authService.signInUser(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                          context: context);
+                    },
                   ),
                 ),
               ),
