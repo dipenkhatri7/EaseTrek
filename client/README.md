@@ -1,4 +1,4 @@
-# client
+# Ease Trek
 
 A new Flutter project.
 
