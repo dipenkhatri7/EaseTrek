@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:client/constant/constants.dart';
 import 'package:client/constant/errorHandle.dart';
 import 'package:client/constant/utils.dart';
-import 'package:client/features/home/homePage.dart';
+import 'package:client/features/home/homeNav.dart';
 import 'package:client/models/user.dart';
 import 'package:client/provider/userProvider.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class AuthService {
           onSuccessful: () async {
             Provider.of<UserProvider>(context, listen: false).setUser(res.body);
             Navigator.pushNamedAndRemoveUntil(
-                context, HomePage.routeName, (route) => false);
+                context, HomeNav.routeName, (route) => false);
           });
     } catch (e) {
       showSnackBar(context, e.toString());
@@ -74,7 +74,7 @@ class AuthService {
             prefs.setString('Authorization', jsonDecode(res.body)['token']);
             Provider.of<UserProvider>(context, listen: false).setUser(res.body);
             Navigator.pushNamedAndRemoveUntil(
-                context, HomePage.routeName, (route) => false);
+                context, HomeNav.routeName, (route) => false);
           });
     } catch (err) {
       showSnackBar(context, err.toString());

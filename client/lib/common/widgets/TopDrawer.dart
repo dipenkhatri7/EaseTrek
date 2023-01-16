@@ -1,6 +1,7 @@
 import 'package:client/common/widgets/textStyle.dart';
 import 'package:client/constant/constants.dart';
 import 'package:client/features/auth/screens/authPage.dart';
+import 'package:client/features/settings/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -77,7 +78,12 @@ class _TopDrawerState extends State<TopDrawer>
           const Divider(),
           _drawerItem(icon: Icons.person, text: "Profile", onTap: () {}),
           const Divider(),
-          _drawerItem(icon: Icons.settings, text: "Settings", onTap: () {}),
+          _drawerItem(
+              icon: Icons.settings,
+              text: "Settings",
+              onTap: () {
+                Navigator.pushNamed(context, Settings.routeName);
+              }),
           const Divider(),
           _drawerItem(
               icon: Icons.logout,

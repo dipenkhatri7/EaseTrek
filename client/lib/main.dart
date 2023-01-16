@@ -2,7 +2,7 @@ import 'package:client/constant/constants.dart';
 import 'package:client/features/auth/screens/authPage.dart';
 import 'package:client/features/auth/screens/signIn.dart';
 import 'package:client/features/auth/services/authService.dart';
-import 'package:client/features/home/homePage.dart';
+import 'package:client/features/home/homeNav.dart';
 import 'package:client/provider/userProvider.dart';
 import 'package:client/router.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
                   backgroundColor: GlobalVariables.selectedItemColor))),
       onGenerateRoute: ((settings) => generateRoute(settings)),
       home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-          ? HomePage()
+          ? HomeNav()
           : AuthPage(),
     );
   }
