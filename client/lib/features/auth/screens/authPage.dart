@@ -4,6 +4,7 @@ import 'package:client/features/auth/screens/signUp.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {
+  static const String routeName = '/auth';
   const AuthPage({Key? key}) : super(key: key);
 
   @override

@@ -93,18 +93,30 @@ class AuthService {
       }
       debugPrint(token);
       debugPrint("inside getUserData");
-      var tokenRes = await http
-          .post(Uri.parse('$uri/isTokenValid'), headers: <String, String>{
-        'content-type': 'application/json',
-        'Authorization': token!,
-      });
-      debugPrint(tokenRes.statusCode.toString());
-      if (tokenRes.statusCode == 200) {
-        var userRes =
-            await http.get(Uri.parse('$uri/'), headers: <String, String>{
-          'content-type': 'application/json',
-          'Authorization': token,
-        });
+
+      var tokenRes = await http.post(
+        Uri.parse('$uri/isTokenValid'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': token!,
+        },
+      );
+
+      debugPrint("After getUserData");
+      var response = jsonDecode(tokenRes.body);
+      debugPrint(response.toString());
+      if (response == true) {
+        debugPrint("inside if");
+        http.Response userRes = await http.get(
+          Uri.parse('$uri/'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': token
+          },
+        );
+        debugPrint("inside if2");
+        debugPrint(userRes.statusCode.toString());
+        debugPrint(userRes.body.toString());
         Provider.of<UserProvider>(context, listen: false).setUser(userRes.body);
       }
     } catch (e) {

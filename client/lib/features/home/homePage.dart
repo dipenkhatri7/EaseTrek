@@ -1,5 +1,6 @@
 import 'package:client/constant/constants.dart';
 import 'package:flutter/material.dart';
+import '../../common/widgets/TopDrawer.dart';
 import '../../provider/userProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: TopDrawer(),
       appBar: AppBar(
+        backgroundColor: GlobalVariables.backgroundColor,
         title: const Text(
           'Ease Trek',
           style: TextStyle(
@@ -20,6 +23,46 @@ class HomePage extends StatelessWidget {
               fontFamily: 'Urbanist',
               letterSpacing: 1.85,
               decoration: TextDecoration.none),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: GlobalVariables.backgroundColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.home,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.add_card,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 28,
+              ),
+            ),
+          ],
         ),
       ),
       body: Column(

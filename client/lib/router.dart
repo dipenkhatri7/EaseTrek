@@ -1,3 +1,4 @@
+import 'package:client/features/auth/screens/authPage.dart';
 import 'package:client/features/auth/screens/signIn.dart';
 import 'package:client/features/auth/screens/signUp.dart';
 import 'package:client/features/home/homePage.dart';
@@ -7,6 +8,9 @@ import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
   switch (routeSettings.name) {
+    case AuthPage.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings, builder: (_) => AuthPage());
     case SignIn.routeName:
       return MaterialPageRoute(
           settings: routeSettings, builder: (_) => SignIn());
