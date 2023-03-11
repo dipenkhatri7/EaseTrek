@@ -20,6 +20,13 @@ void httpErrorHandle({
         ),
       );
       break;
+    case 401:
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Incorrect Email or Password'),
+        ),
+      );
+      break;
     case 500:
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

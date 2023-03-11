@@ -29,6 +29,12 @@ class HomePageState extends State<HomePage> {
               decoration: TextDecoration.none),
         ),
       ),
+      body: Container(
+        color: GlobalVariables.backScreen,
+        child: const Center(
+          child: Text('Home'),
+        ),
+      ),
     );
   }
 }

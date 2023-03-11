@@ -1,3 +1,4 @@
+import 'package:client/common/widgets/button.dart';
 import 'package:client/constant/constants.dart';
 import 'package:client/features/auth/screens/signIn.dart';
 import 'package:client/features/auth/screens/signUp.dart';
@@ -19,97 +20,46 @@ class AuthPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Hero(
+            const Hero(
               tag: 'logo',
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Image(
-                    image: AssetImage('images/logo.png'),
-                    height: 48.45,
-                    width: 48.45,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * .05,
-                  ),
-                  const Text(
-                    'Ease Trek',
-                    style: TextStyle(
-                        fontSize: 34.45,
-                        fontWeight: FontWeight.bold,
-                        color: GlobalVariables.titleColor,
-                        fontFamily: 'Urbanist',
-                        letterSpacing: 1.85,
-                        decoration: TextDecoration.none),
-                  )
-                ],
+              child: Image(
+                image: AssetImage('images/Logo-ease-trek.png'),
+                height: 290.45,
+                width: 290.45,
               ),
             ),
+            // Text('App Motto || Description Kind of'),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
+              height: MediaQuery.of(context).size.height * 0.1,
             ),
-            Text('App Motto || Description Kind of'),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
-            ),
-            Hero(
-              tag: 'login',
-              child: Card(
-                elevation: 5.8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.45),
-                ),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.045,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: TextButton(
-                    child: const Text(
-                      "LOGIN",
-                      style: TextStyle(
-                          fontSize: 20.45,
-                          fontWeight: FontWeight.bold,
-                          color: GlobalVariables.backgroundColor,
-                          fontFamily: 'Urbanist',
-                          letterSpacing: 1.85,
-                          decoration: TextDecoration.none),
-                    ),
-                    onPressed: () {
+            Column(
+              children: [
+                Hero(
+                  tag: 'login',
+                  child: Button(
+                    text: "Sign In",
+                    onPress: () {
                       Navigator.pushNamed(context, SignIn.routeName);
                     },
+                    color: Colors.black,
+                    textColor: Colors.white,
                   ),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Hero(
-              tag: 'signUp',
-              child: Card(
-                elevation: 5.8,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16.45),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.045,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: TextButton(
-                    child: const Text(
-                      "SIGN UP",
-                      style: TextStyle(
-                          fontSize: 20.45,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Urbanist',
-                          color: GlobalVariables.backgroundColor,
-                          letterSpacing: 1.85,
-                          decoration: TextDecoration.none),
-                    ),
-                    onPressed: () {
+                Hero(
+                  tag: 'signUp',
+                  child: Button(
+                    text: "Create account",
+                    onPress: () {
                       Navigator.pushNamed(context, SignUp.routeName);
                     },
+                    color: Colors.transparent,
+                    textColor: Colors.black,
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         ),

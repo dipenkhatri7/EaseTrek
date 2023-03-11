@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:client/constant/constants.dart';
 import 'package:client/constant/errorHandle.dart';
@@ -29,8 +30,10 @@ class AuthService {
         token: '',
       );
       debugPrint("HERE");
+      debugPrint(user.toJson().toString());
+
       http.Response res = await http.post(
-        Uri.parse('http://localhost:3000/signup'),
+        Uri.parse('$uri/signup'),
         body: user.toJson(),
         headers: {
           'Content-Type': 'application/json',
@@ -48,6 +51,8 @@ class AuthService {
                 context, HomeNav.routeName, (route) => false);
           });
     } catch (e) {
+      debugPrint("GOT HERE");
+      debugPrint(e.toString());
       showSnackBar(context, e.toString());
     }
   }
@@ -88,9 +93,6 @@ class AuthService {
       debugPrint("HERERER");
       String? token = prefs.getString('Authorization');
       debugPrint("HERE2");
-      if (token == null) {
-        prefs.setString('Authorization', "");
-      }
       debugPrint(token);
       debugPrint("inside getUserData");
 
@@ -98,10 +100,10 @@ class AuthService {
         Uri.parse('$uri/isTokenValid'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': token!,
+          'Authorization': token ?? "",
         },
       );
-
+      debugPrint(tokenRes.body.toString());
       debugPrint("After getUserData");
       var response = jsonDecode(tokenRes.body);
       debugPrint(response.toString());
@@ -111,7 +113,7 @@ class AuthService {
           Uri.parse('$uri/'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': token
+            'Authorization': token ?? "",
           },
         );
         debugPrint("inside if2");

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-String uri = "http://localhost:3000";
+String uri = "http://192.168.0.107:3000";
 class GlobalVariables{
-  static const appBarColor = Color(0xFFFFFFFF);
+  static const backScreen = Color(0xFFF2F2F2);
   static const backgroundColor = Color(0xFF8073D9);
   static const titleColor = Color(0xFF7F50BF);
   // static const textColor = 

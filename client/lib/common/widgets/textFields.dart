@@ -1,41 +1,73 @@
 import 'package:flutter/material.dart';
 
-class TextFields extends StatelessWidget {
+class TextFields extends StatefulWidget {
   final TextEditingController controller;
   final String labelText;
   final bool hideStatus;
   final String hintText;
+  final IconData icon;
+  final Function? onPress;
   const TextFields(
       {Key? key,
+      required this.icon,
       required this.controller,
       required this.labelText,
       required this.hideStatus,
-      required this.hintText})
+      required this.hintText,
+      this.onPress})
       : super(key: key);
 
   @override
+  State<TextFields> createState() => _TextFieldsState();
+}
+
+class _TextFieldsState extends State<TextFields> {
+  @override
+  bool ishidden = false;
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.7,
-      height: MediaQuery.of(context).size.height * 0.045,
+      width: widget.icon == Icons.search
+          ? MediaQuery.of(context).size.width
+          : MediaQuery.of(context).size.width * 0.9,
+      height: widget.icon == Icons.search
+          ? MediaQuery.of(context).size.height * 0.064
+          : MediaQuery.of(context).size.height * 0.065,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.45),
+        borderRadius: BorderRadius.circular(8.45),
       ),
       child: TextFormField(
         autocorrect: false,
-        obscureText: hideStatus,
-        controller: controller,
+        obscureText: widget.hideStatus,
+        controller: widget.controller,
         decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.45),
+          prefixIcon: Icon(
+            widget.icon,
+            size: widget.icon == Icons.search ? 25.45 : 22.45,
+            color: Colors.black,
           ),
+          suffixIcon: widget.icon == Icons.email
+              ? Icon(
+                  Icons.check_circle,
+                  color: Colors.grey,
+                )
+              : InkWell(
+                  onTap: () {
+                    setState(() {
+                      ishidden = !ishidden;
+                    });
+                  },
+                  child: ishidden == false
+                      ? Icon(
+                          Icons.visibility,
+                        )
+                      : Icon(Icons.visibility_off),
+                ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.45),
+            borderRadius: BorderRadius.circular(10),
           ),
-          hintText: hintText,
-          labelText: labelText,
+          hintText: widget.hintText,
+          labelText: widget.labelText,
           hintStyle: const TextStyle(
             fontSize: 11.45,
             fontWeight: FontWeight.bold,
@@ -49,6 +81,9 @@ class TextFields extends StatelessWidget {
             return 'Please enter some text';
           }
           return null;
+        },
+        onTap: () {
+          widget.onPress!();
         },
       ),
     );

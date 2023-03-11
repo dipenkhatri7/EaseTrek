@@ -74,8 +74,6 @@ class _TopDrawerState extends State<TopDrawer>
           const SizedBox(
             height: 10,
           ),
-          _drawerItem(icon: Icons.home, text: "Home", onTap: () {}),
-          const Divider(),
           _drawerItem(icon: Icons.person, text: "Profile", onTap: () {}),
           const Divider(),
           _drawerItem(
@@ -84,6 +82,8 @@ class _TopDrawerState extends State<TopDrawer>
               onTap: () {
                 Navigator.pushNamed(context, Settings.routeName);
               }),
+          const Divider(),
+          _drawerItem(icon: Icons.book, text: "About Us", onTap: () {}),
           const Divider(),
           _drawerItem(
               icon: Icons.logout,

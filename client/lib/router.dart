@@ -1,4 +1,5 @@
 import 'package:client/features/auth/screens/authPage.dart';
+import 'package:client/features/auth/screens/forgotPassword.dart';
 import 'package:client/features/auth/screens/signIn.dart';
 import 'package:client/features/auth/screens/signUp.dart';
 import 'package:client/features/home/homeNav.dart';
@@ -6,9 +7,10 @@ import 'package:client/features/home/homePage.dart';
 import 'package:client/features/maps/screens/maps.dart';
 import 'package:client/features/marketPlace/screens/marketPlace.dart';
 import 'package:client/features/search/screens/search.dart';
+import 'package:client/features/settings/screens/About.dart';
+import 'package:client/features/settings/screens/ResetPassword.dart';
+import 'package:client/features/settings/screens/Security.dart';
 import 'package:client/features/settings/screens/settings.dart';
-import 'package:flutter/material.dart';
-
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -39,6 +41,18 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
     case Settings.routeName:
       return MaterialPageRoute(
           settings: routeSettings, builder: (_) => Settings());
+    case ForgetPassword.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings, builder: (_) => ForgetPassword());
+    case About.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings, builder: (_) => About());
+    case Security.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings, builder: (_) => Security());
+    case ResetPassword.routeName:
+      return MaterialPageRoute(
+          settings: routeSettings, builder: (_) => ResetPassword());
   }
   return MaterialPageRoute(
     settings: routeSettings,
